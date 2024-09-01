@@ -1,0 +1,313 @@
+❖ DEPARTMENT TABLE
+
+CREATE SEQUENCE dept_seq START WITH 401 INCREMENT BY 1 MAXVALUE 999 NOCYCLE NOCACHE;
+
+CREATE TABLE DEPARTMENT(DEPT_ID NUMBER PRIMARY KEY, DEPT_NAME varchar(200), DEPT_LOC varchar(200), SUPERVISOR varchar(500));
+
+INSERT into DEPARTMENT (DEPT_ID, DEPT_NAME, DEPT_LOC, SUPERVISOR) VALUES (dept_seq.NEXTVAL, 'IT', '6th floor', 'Harrison');
+
+ INSERT into DEPARTMENT (DEPT_ID, DEPT_NAME, DEPT_LOC, SUPERVISOR) VALUES (dept_seq.NEXTVAL, 'Marketing', '4th floor', 'Hemsworth');
+
+ INSERT into DEPARTMENT (DEPT_ID, DEPT_NAME, DEPT_LOC, SUPERVISOR) VALUES (dept_seq.NEXTVAL, 'Management', '7th floor', 'Michel');
+
+ INSERT into DEPARTMENT (DEPT_ID, DEPT_NAME, DEPT_LOC, SUPERVISOR) VALUES (dept_seq.NEXTVAL, 'Finance', '3rd floor', 'Georgia');
+ 
+INSERT into DEPARTMENT (DEPT_ID, DEPT_NAME, DEPT_LOC, SUPERVISOR) VALUES (dept_seq.NEXTVAL, 'HR', '2nd floor', 'Mendes');
+
+
+❖ EMPLOYEE TABLE
+CREATE SEQUENCE emp_seq START WITH 1001 INCREMENT BY 1 MAXVALUE 999999 NOCYCLE NOCACHE;
+
+CREATE TABLE EMPLOYEE(E_ID NUMBER PRIMARY KEY NOT NULL, FIRST_NAME varchar(200), LAST_NAME varchar(500), EMAIL varchar(200), Job varchar(50), J_STATUS varchar(200), HIREDATE varchar(200), BACKGROUND varchar(200), SALARY varchar(200), D_ID int);
+
+ALTER TABLE EMPLOYEE ADD FOREIGN KEY (D_ID) REFERENCES DEPARTMENT(DEPT_ID);
+
+INSERT into EMPLOYEE (E_ID, FIRST_NAME, LAST_NAME, EMAIL, Job, J_STATUS, HIREDATE, BACKGROUND, SALARY, D_ID) VALUES (emp_seq.NEXTVAL, 'Emon', 'Alhera', 'alhera@gmail.com', 'Data Scientist', 'Full-Time', '22-11-2020', 'BSc. in CSE', '47980', 401);
+
+ INSERT into EMPLOYEE (E_ID, FIRST_NAME, LAST_NAME, EMAIL, Job, HIREDATE, BACKGROUND, SALARY, D_ID) VALUES (emp_seq.NEXTVAL, J_STATUS, 'Rifat', 'Talukdar', 'rifat@gmail.com', 'Web Developer', 'Full-Time', '12-02-2021', 'BSc. in CSE', '46550', 401);
+
+ INSERT into EMPLOYEE (E_ID, FIRST_NAME, LAST_NAME, EMAIL, Job, J_STATUS, HIREDATE, BACKGROUND, SALARY, D_ID) VALUES (emp_seq.NEXTVAL, 'Jabin', 'Mitu', 'mitu@gmail.com', 'Graphics Designer', 'Part-Time', '11-02-2023', 'BA. in English', '30590', 402);
+
+INSERT into EMPLOYEE (E_ID, FIRST_NAME, LAST_NAME, EMAIL, Job, J_STATUS, HIREDATE, BACKGROUND, SALARY, D_ID) VALUES (emp_seq.NEXTVAL, 'Mardia', 'Mumu', 'mumu@gmail.com', 'Finance Manager', 'Full-Time', '31-12-2022', 'BBA. in Finance', '31500', 404);
+ 
+INSERT into EMPLOYEE (E_ID, FIRST_NAME, LAST_NAME, EMAIL, Job, J_STATUS, HIREDATE, BACKGROUND, SALARY, D_ID) VALUES (emp_seq.NEXTVAL, 'Michel', 'Wayne', 'wayne@gmail.com', 'Managing Head', 'Full-Time', '17-09-2020', 'MBA. in Management', '51650', 403);
+ 
+INSERT into EMPLOYEE (E_ID, FIRST_NAME, LAST_NAME, EMAIL, Job, J_STATUS, HIREDATE, BACKGROUND, SALARY, D_ID) VALUES (emp_seq.NEXTVAL, 'Harrison', 'Styles', 'harry@gmail.com', 'IT Head', 'Full-Time', '21-09-2019', 'MSc. in Data Analytics', '63950', 401);
+
+ INSERT into EMPLOYEE (E_ID, FIRST_NAME, LAST_NAME, EMAIL, Job, J_STATUS, HIREDATE, BACKGROUND, SALARY, D_ID) VALUES (emp_seq.NEXTVAL, 'Hemsworth', 'Payne', 'payne@gmail.com', 'Marketing Head', 'Full-Time', '22-10-2021', 'MSc. in Psychology', '56950', 402);
+ INSERT into EMPLOYEE (E_ID, FIRST_NAME, LAST_NAME, EMAIL, Job, J_STATUS, HIREDATE, BACKGROUND, SALARY, D_ID) VALUES (emp_seq.NEXTVAL, 'Siam', 'Ahmed', 'siam@gmail.com', 'HR Assistant Manager', 'Part-Time', '23-04-2023', 'BBA. General', '24860', 405);
+ INSERT into EMPLOYEE (E_ID, FIRST_NAME, LAST_NAME, EMAIL, Job, J_STATUS, HIREDATE, BACKGROUND, SALARY, D_ID) VALUES (emp_seq.NEXTVAL, 'Georgia', 'Mallik', 'mallik@gmail.com', 'Head of Finance', 'Full-Time', '12-12-2021', 'MBA. in Finance', '65860', 404); 
+INSERT into EMPLOYEE (E_ID, FIRST_NAME, LAST_NAME, EMAIL, Job, J_STATUS, HIREDATE, BACKGROUND, SALARY, D_ID) VALUES (emp_seq.NEXTVAL, 'Mendes', 'Shawn', 'mendes@gmail.com', 'Head of HR', 'Full-Time', '13-05-2022', 'MBA. in HR Management', '57750', 405);
+
+❖ BANK TABLE
+
+CREATE TABLE BANK (B_CODE NUMBER PRIMARY KEY NOT NULL, B_NAME varchar(200), Street_NO varchar(500), APPAR_NO varchar(200), BRANCH varchar(200));
+
+INSERT into BANK (B_CODE, B_NAME, Street_NO, APPAR_NO, BRANCH) VALUES ('2462513', 'AB_Bank_Limited', 'Block_A Bashundhara', 'Plot_No. 7', 'Dhaka');
+ INSERT into BANK (B_CODE, B_NAME,Street_NO, APPAR_NO,BRANCH) VALUES ('6124532','Dhaka_Bank_Limited','Ward_4 Kotwali','Holding 90','Faridpur');
+ INSERT into BANK (B_CODE, B_NAME, Street_NO, APPAR_NO, BRANCH) VALUES ('8462829', 'Dutch-Bangla Bank', 'Road_8 Dhanmondi_R/A', 'House_500-A/1', 'Dhaka');
+ INSERT into BANK (B_CODE, B_NAME, Street_NO, APPAR_NO, BRANCH) VALUES ('5237131', 'Dutch-Bangla Bank', 'Sheikh_Mujib_Road', 'Holding 153', 'Chattogram');
+
+❖ LOAN TABLE
+
+CREATE TABLE LOAN (B_CODE NUMBER NOT NULL, L_TYPE varchar(200), L_Amount varchar(200), L_DATE varchar(200), LM_DATE varchar(200));
+
+ALTER TABLE LOAN ADD FOREIGN KEY (B_Code) REFERENCES BANK(B_CODE);
+
+INSERT into LOAN (B_CODE, L_TYPE, L_Amount, L_DATE, LM_DATE) VALUES ('2462513', 'Term Loan', '5400000', '12-03-2020', '13-03-2025');
+ INSERT into LOAN (B_CODE, L_TYPE, L_Amount, L_DATE, LM_DATE) VALUES ('6124532', 'Working Capital Loan', '4000000', '23-11-2022', '22-11-2023'); 
+INSERT into LOAN (B_CODE, L_TYPE, L_Amount, L_DATE, LM_DATE) VALUES ('8462829', 'Term Loan', '1150000', '06-07-2019', '13-09-2023'); 
+INSERT into LOAN (B_CODE, L_TYPE, L_Amount, L_DATE, LM_DATE) VALUES ('5237131', 'Letter of Credit', '2550000', '12-03-2020', '13-03-2025');
+
+
+❖ SKYLINE TABLE
+
+CREATE TABLE SKIYLINE (Com_ID CHAR(20) PRIMARY KEY NOT NULL, Com_Loc VARCHAR(200)); 
+
+INSERT into SKIYLINE (Com_ID, Com_Loc) VALUES ('ACME12345', 'Dhaka');
+
+❖ SHAREHOLDER TABLE 
+
+CREATE TABLE SHAREHOLDER (S_CODE NUMBER PRIMARY KEY NOT NULL, FIRST_NAME varchar(200), LAST_NAME varchar(200), in_Amount varchar(200), EQUITY varchar(200)); 
+
+
+INSERT into SHAREHOLDER (S_CODE, FIRST_NAME, LAST_NAME, in_Amount, EQUITY) 
+VALUES ('5759', 'Akbar', 'Ali', '3500000', '6.5%'); 
+ 
+ 
+INSERT into SHAREHOLDER (S_CODE, FIRST_NAME, LAST_NAME, in_Amount, EQUITY) 
+VALUES ('6173', 'Zenin', 'Jarir', '2000000', '4%'); 
+ 
+ 
+INSERT into SHAREHOLDER (S_CODE, FIRST_NAME, LAST_NAME, in_Amount, EQUITY) 
+VALUES ('8562', 'Alif', 'Adnan', '5000000', '8%'); 
+
+➔ SHR_PHONE 
+CREATE TABLE SHR_Phone (S_CODE NUMBER NOT NULL, S_NAME varchar(200), S_Phone varchar(200)); 
+
+ALTER TABLE SHR_Phone 
+ADD FOREIGN KEY (S_Code) REFERENCES BANK(S_CODE); 
+
+INSERT into SHR_Phone (S_Code, S_NAME, S_Phone) VALUES ('5759', 'Akbar_Ali', 
+'01983463543'); 
+ 
+ 
+INSERT into SHR_Phone (S_Code, S_NAME, S_Phone) VALUES ('5759', 'Akbar_Ali', 
+'01765436789'); 
+ 
+ 
+INSERT into SHR_Phone (S_Code, S_NAME, S_Phone) VALUES ('6173', 
+'Zenin_Jarir', '017765483921');  
+ 
+INSERT into SHR_Phone (S_Code, S_NAME, S_Phone) VALUES ('6173', 
+'Zenin_Jarir', '01867545678'); 
+ 
+ 
+INSERT into SHR_Phone (S_Code, S_NAME, S_Phone) VALUES ('8562', 
+'Alif_Adnan', '01564567893'); 
+ 
+ 
+INSERT into SHR_Phone (S_Code, S_NAME, S_Phone) VALUES ('8562', 'Alif_Adnan', '018189293545'); 
+
+**FINANCIAL_RECORD TABLE 
+
+CREATE TABLE FINANCIAL_RECORD (YEAR NUMBER NOT NULL, REVENUE varchar(200), PROFIT varchar(200), GROSS_MARGIN varchar(200), ASSET varchar(200), EXPENSES varchar(200), CASH_BURN varchar(200)); 
+
+
+INSERT into FINANCIAL_RECORD (YEAR, REVENUE, PROFIT, GROSS_MARGIN, ASSET, 
+EXPENSES, CASH_BURN) VALUES ('2019', '1,500,000', '400,000', '35%', 
+'5,000,000', '1,100,000', '200,000');   
+INSERT into FINANCIAL_RECORD (YEAR, REVENUE, PROFIT, GROSS_MARGIN, ASSET, 
+EXPENSES, CASH_BURN) VALUES ('2020', '2,000,000', '600,000', '40%', 
+'6,000,000', '1,400,000', '250,000');   
+INSERT into FINANCIAL_RECORD (YEAR, REVENUE, PROFIT, GROSS_MARGIN, ASSET, 
+EXPENSES, CASH_BURN) VALUES ('2021', '2,500,000', '800,000', '45%', 
+'7,500,000', '1,700,000', '300,000');   
+INSERT into FINANCIAL_RECORD (YEAR, REVENUE, PROFIT, GROSS_MARGIN, ASSET, 
+EXPENSES, CASH_BURN) VALUES ('2022', '3,000,000', '1,000,000', '50%', '9,000,000', '2,000,000', '350,000'); 
+
+❖ CUSTOMER TABLE 
+
+CREATE TABLE CUSTOMER (C_ID INT PRIMARY KEY NOT NULL, FIRST_NAME VARCHAR(200),
+LAST_NAME VARCHAR(200), EMAIL VARCHAR(200), ADDRESS VARCHAR(200), C_DOB VARCHAR(200), AGE INT); 
+
+INSERT into CUSTOMER (C_ID, FIRST_NAME, LAST_NAME, EMAIL, ADDRESS, C_DOB, 
+AGE) VALUES ('7562', 'Abdul', 'Aladin', 'aladin@gmail.com', 'Dhaka', '1981- 
+07-23', 41); 
+ 
+ 
+INSERT into CUSTOMER (C_ID, FIRST_NAME, LAST_NAME, EMAIL, ADDRESS, C_DOB, 
+AGE) VALUES ('1672', 'Mustakim', 'Rahman', 'rahman@gmail.com', 'Sylhet', 
+'1979-04-03', 44); 
+ 
+ 
+INSERT into CUSTOMER (C_ID, FIRST_NAME, LAST_NAME, EMAIL, ADDRESS, C_DOB, 
+AGE) VALUES ('6234', 'Khalid', 'Kashmiri', 'kashmiri@gmail.com', 
+'Chittagong', '1985-06-07', 37);  
+ 
+INSERT into CUSTOMER (C_ID, FIRST_NAME, LAST_NAME, EMAIL, ADDRESS, C_DOB, 
+AGE) VALUES ('9803', 'Ahsam', 'Haque', 'ahsam@gmail.com', 'Comilla', '1975- 
+09-12', 47); 
+
+
+➔ CMR_PHONE 
+
+CREATE TABLE CMR_Phone (C_ID NUMBER NOT NULL, C_NAME varchar(200), C_Phone varchar(200)); 
+
+ALTER TABLE CMR_Phone 
+ADD FOREIGN KEY (C_ID) REFERENCES CUSTOMER(C_ID); 
+
+
+INSERT into CMR_Phone (C_ID, C_NAME, C_Phone) VALUES ('1672', 
+'Mustakim_Rahman', '015342678991');   
+INSERT into CMR_Phone (C_ID, C_NAME, C_Phone) VALUES (6234', 
+'Khalid_Kashmiri', '01372635478');  
+ 
+INSERT into CMR_Phone (C_ID, C_NAME, C_Phone) VALUES (Ahsam_Haque', 
+'018189293545'); 
+ 
+ 
+INSERT into CMR_Phone (C_ID, C_NAME, C_Phone) VALUES (7562', 
+'Abdul_Aladin', '01765673892');  
+ 
+INSERT into CMR_Phone (C_ID, C_NAME, C_Phone) VALUES (7562', 
+'Abdul_Aladin', '01456372819');  
+ 
+INSERT into SHR_Phone (S_Code, S_NAME, S_Phone) VALUES (6234', 'Khalid_Kashmiri', '01867483923'); 
+
+❖ TRANSACTION TABLE 
+
+
+CREATE TABLE TRANSACTION (T_ID NUMBER PRIMARY KEY NOT NULL, Status varchar(200), C_ID INT);
+
+ ALTER TABLE TRANSACTION 
+ADD FOREIGN KEY (C_ID) REFERENCES CUSTOMER(C_ID); 
+
+INSERT into TRANSACTION (T_ID, Status, C_ID) VALUES ('903', 'Purchased', 
+'6234'); 
+ 
+ 
+INSERT into TRANSACTION (T_ID, Status, C_ID) VALUES ('904', 'Processing', 
+'9803'); 
+ 
+ 
+INSERT into TRANSACTION (T_ID, Status, C_ID) VALUES ('901', 'Pending', 
+'7562'); 
+ 
+ 
+INSERT into TRANSACTION (T_ID, Status, C_ID) VALUES ('902', 'Purchased', '1672'); 
+
+
+❖ PROPERTY TABLE 
+
+CREATE TABLE PROPERTY (Flat_Code INT PRIMARY KEY NOT NULL, P_Type
+VARCHAR(200), Region VARCHAR(200), Street_NO VARCHAR(200), Area VARCHAR(200), Price VARCHAR(200), Status VARCHAR(200)); 
+
+INSERT into PROPERTY (Flat_Code, P_Type, Region, Street_NO, Area, Price, Status) VALUES ('9010', 'Buy', 'Baridhara', 'B-Block', '2100 sq-ft', 
+'1.05CR', 'Ready'); 
+
+
+INSERT into PROPERTY (Flat_Code, P_Type, Region, Street_NO, Area, Price, Status) VALUES ('9011', 'Rent', 'Badda', 'Link_Road', '1755 sq-ft', 
+'95Lakhs', 'Ready'); 
+
+INSERT into PROPERTY (Flat_Code, P_Type, Region, Street_NO, Area, Price, Status) VALUES ('9012', 'Rent', 'Motijheel', '217/51 Road', '1877 sq-ft', 
+'80Lakhs', 'On Construction'); 
+
+
+INSERT into PROPERTY (Flat_Code, P_Type, Region, Street_NO, Area, Price, Status) VALUES ('9013', 'Buy', 'Mirpur', 'DOHS C-Block', '1650 sq-ft', 
+'75Lakhs', 'Ready'); 
+
+
+INSERT into PROPERTY (Flat_Code, P_Type, Region, Street_NO, Area, Price, Status) VALUES ('9014', 'Buy', 'Bashundhara', 'Road-2 A-Block', '2450 sq- ft', '1.25CR', 'Ready'); 
+
+
+
+
+
+
+
+
+Query Simple:
+1) Display all the records in the department table?
+
+select * from DEPARTMENT;
+2) Display all the records in the employee table?
+
+select * from EMPLOYEE;
+
+
+3) Display email, job, j_status, hiredate in employee table?
+
+select job,email, j_status, hiredate from EMPLOYEE;
+
+4) Display all the records in bank table?
+
+select * from BANK;
+
+5) Display all the records in loan table?
+
+select * from LOAN;
+
+6) Display S_CODE, IN_AMOUNT, EQUITY in SHAREHOLDER table?
+
+select s_code, in_amount, equity from SHAREHOLDER;
+
+7) Display REVENUE, PROFIT, GROSS_MARGIN in FINANCIAL_RECORD table?
+
+select revenue, profit, gross_margin from FINANCIAL_RECORD;
+
+Query Complex:
+
+8) Display email, address, age in the customer table where the first letter of first_name 
+is ‘A’?
+
+select email, address, age from customer where first_name like 'A%';
+
+9) Display email in the employee table where the last letter of first_name is ‘a’?
+
+select email from employee where first_name like '%a';
+
+10) Display all employees details who join before 11/02/2023?
+
+select * from EMPLOYEE where HIREDATE<='11/02/2023';
+
+11) Display E_ID in the employeee table group by E_ID?
+
+select E_ID from employee group by E_ID;
+
+
+Sub-Query:
+
+12) Display revenue, profit in the financial_record table where expenses is greater than 
+avg expenses?
+
+SELECT revenue, profit FROM financial_record WHERE expenses > (SELECT AVG(expenses) FROM
+financial_record);
+
+13) Display all the email in the customer table where age is not equal max age?
+
+SELECT email FROM customer WHERE age != (SELECT MAX(age) FROM customer);
+
+Joining:
+14) Display all the B_CODE that are in LOAN and BANK TABLE?
+
+SELECT * FROM BANK JOIN LOAN ON BANK.B_CODE= LOAN.B_CODE;
+
+15) Display all the C_ID that are in CUSTOMER and CMR_PHONE TABLE?
+
+SELECT * FROM CUSTOMER JOIN CMR_PHONE ON CUSTOMER.C_ID=CMR_PHONE.C_ID;
+
+Views:
+
+16) Create a view called employes_bio based on the job, background, salary where department id are
+401 and 402.
+
+create view employees_bio as select job, background, salary from employee where D_ID=401 or D_ID=402;
+
+17) Create a view called customer_bio based on the email, address and date of birth where c_id are 6234 and 7562.
+
+create view customer_bio as select email, address, c_dob from customer where C_ID=6234 or C_ID= 103;
+
+
+
+
